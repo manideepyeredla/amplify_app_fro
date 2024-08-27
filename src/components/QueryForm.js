@@ -11,8 +11,9 @@ const QueryForm = () => {
   // Fetch all data on initial render
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      setError(''); // Clear previous errors
       try {
-        setLoading(true);
         const payload = {
           query: "SELECT * FROM public.cibc_fraud_transaction_by_acct;"
         };
@@ -22,11 +23,11 @@ const QueryForm = () => {
           },
         });
         setData(response.data);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching data", error);
-        setError("Failed to fetch data.");
-        setLoading(false);
+        setError("Failed to fetch data. Please try again later.");
+      } finally {
+        setLoading(false); // Ensure loading state is reset
       }
     };
 
@@ -64,11 +65,11 @@ const QueryForm = () => {
       } else {
         setData(response.data);
       }
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching data", error);
-      setError("Failed to fetch data for the specified Case ID.");
-      setLoading(false);
+      setError("Failed to fetch data for the specified Case ID. Please try again later.");
+    } finally {
+      setLoading(false); // Ensure loading state is reset
     }
   };
 
