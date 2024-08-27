@@ -16,7 +16,11 @@ const QueryForm = () => {
         const payload = {
           query: "SELECT * FROM public.cibc_fraud_transaction_by_acct;"
         };
-        const response = await axios.post(`${process.env.REACT_APP_API_GATEWAY_URL}/test`, payload); // Use the environment variable
+        const response = await axios.post(`${process.env.REACT_APP_API_GATEWAY_URL}/test`, payload, {
+          headers: {
+            'Content-Type': 'application/json', // Specify Content-Type
+          },
+        });
         setData(response.data);
         setLoading(false);
       } catch (error) {
@@ -48,7 +52,11 @@ const QueryForm = () => {
       const payload = {
         query: sqlQuery
       };
-      const response = await axios.post(`${process.env.REACT_APP_API_GATEWAY_URL}/test`, payload); // Use the environment variable
+      const response = await axios.post(`${process.env.REACT_APP_API_GATEWAY_URL}/test`, payload, {
+        headers: {
+          'Content-Type': 'application/json', // Specify Content-Type
+        },
+      });
       console.log("Response data:", response.data); // Log the response data
 
       if (response.data.length === 0) {
