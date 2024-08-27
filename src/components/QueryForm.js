@@ -48,7 +48,7 @@ const QueryForm = () => {
       const payload = {
         query: sqlQuery
       };
-      const response = await axios.post('/test', payload); // Using relative URL
+      const response = await axios.post('${process.env.REACT_APP_API_GATEWAY_URL}/test', payload); // Using relative URL
       console.log("Response data:", response.data); // Log the response data
 
       if (response.data.length === 0) {
