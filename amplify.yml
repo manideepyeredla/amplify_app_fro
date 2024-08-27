@@ -8,7 +8,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - amplify_app_fro  # Navigate to the directory containing your React app
+       
         - npm ci              # Install dependencies using npm ci for a clean install
     build:
       commands:
