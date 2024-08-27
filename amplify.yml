@@ -1,23 +1,20 @@
 version: 1
-applications:
-  - appRoot: amplify_app
-    backend:
-      phases:
-        preBuild:
-          commands:
-            - npm install
-        build:
-          commands:
-            - npm run build
-    frontend:
-      phases:
-        build:
-          commands:
-            - npm run build
-      artifacts:
-        baseDirectory: build
-        files:
-          - '**/*'
-      cache:
-        paths:
-          - node_modules/**/*
+env:
+  variables:
+    REACT_APP_API_GATEWAY_URL: "https://1umgzztir6.execute-api.ap-south-1.amazonaws.com"  # Example variable
+
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci  # Install dependencies using npm ci for a clean install
+    build:
+      commands:
+        - npm run build  # Build the React app
+  artifacts:
+    baseDirectory: build  # Directory where the build files are located
+    files:
+      - '**/*'  # Include all files in the baseDirectory
+  cache:
+    paths:
+      - node_modules/**/*  # Cache node_modules for faster builds
