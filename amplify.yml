@@ -1,7 +1,7 @@
 version: 1
 env:
   variables:
-    REACT_APP_API_GATEWAY_URL: "https://1umgzztir6.execute-api.ap-south-1.amazonaws.com/test"  # Example variable
+    REACT_APP_API_GATEWAY_URL: "https://1umgzztir6.execute-api.ap-south-1.amazonaws.com"  # Example variable
 
 frontend:
   phases:
