@@ -11,23 +11,18 @@ const QueryForm = () => {
   // Fetch all data on initial render
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      setError(''); // Clear previous errors
       try {
+        setLoading(true);
         const payload = {
           query: "SELECT * FROM public.cibc_fraud_transaction_by_acct;"
         };
-        const response = await axios.post(`${process.env.REACT_APP_API_GATEWAY_URL}/test`, payload, {
-          headers: {
-            'Content-Type': 'application/json', // Specify Content-Type
-          },
-        });
+        const response = await axios.post('/test', payload);
         setData(response.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data", error);
-        setError("Failed to fetch data. Please try again later.");
-      } finally {
-        setLoading(false); // Ensure loading state is reset
+        setError("Failed to fetch data.");
+        setLoading(false);
       }
     };
 
@@ -53,11 +48,7 @@ const QueryForm = () => {
       const payload = {
         query: sqlQuery
       };
-      const response = await axios.post(`${process.env.REACT_APP_API_GATEWAY_URL}/test`, payload, {
-        headers: {
-          'Content-Type': 'application/json', // Specify Content-Type
-        },
-      });
+      const response = await axios.post('/test', payload); // Using relative URL
       console.log("Response data:", response.data); // Log the response data
 
       if (response.data.length === 0) {
@@ -65,11 +56,11 @@ const QueryForm = () => {
       } else {
         setData(response.data);
       }
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching data", error);
-      setError("Failed to fetch data for the specified Case ID. Please try again later.");
-    } finally {
-      setLoading(false); // Ensure loading state is reset
+      setError("Failed to fetch data for the specified Case ID.");
+      setLoading(false);
     }
   };
 
