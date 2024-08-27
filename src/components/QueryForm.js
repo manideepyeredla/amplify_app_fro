@@ -16,7 +16,7 @@ const QueryForm = () => {
         const payload = {
           query: "SELECT * FROM public.cibc_fraud_transaction_by_acct;"
         };
-        const response = await axios.post('/test', payload);
+        const response = await axios.post(`${process.env.REACT_APP_API_GATEWAY_URL}/test`, payload); // Use the environment variable
         setData(response.data);
         setLoading(false);
       } catch (error) {
@@ -48,7 +48,7 @@ const QueryForm = () => {
       const payload = {
         query: sqlQuery
       };
-      const response = await axios.post('https://1umgzztir6.execute-api.ap-south-1.amazonaws.com/test', payload); // Using relative URL
+      const response = await axios.post(`${process.env.REACT_APP_API_GATEWAY_URL}/test`, payload); // Use the environment variable
       console.log("Response data:", response.data); // Log the response data
 
       if (response.data.length === 0) {
