@@ -7,6 +7,8 @@ frontend:
   phases:
     preBuild:
       commands:
+        - npm install @aws-amplify/ui-react
+
         - npm ci  # Install dependencies using npm ci for a clean install
     build:
       commands:
